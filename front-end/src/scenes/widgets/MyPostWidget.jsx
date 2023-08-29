@@ -24,6 +24,7 @@ import {
   import { useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
   import { setPosts } from "state";
+import { BE_URL } from "App";
   
   const MyPostWidget = ({ picturePath }) => {
     const dispatch = useDispatch();
@@ -48,7 +49,7 @@ import {
       console.log('FORMDAT', formData)
       
       const response = await fetch(
-        "/newpost",
+        `${BE_URL}/newpost`,
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`,

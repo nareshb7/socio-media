@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux'
 import {CssBaseline, ThemeProvider} from '@mui/material'
 import {createTheme} from '@mui/material/styles'
 import {themeSettings} from './theme';
+export const BE_URL = "https://socio-media.onrender.com"
 
 
 function App() {

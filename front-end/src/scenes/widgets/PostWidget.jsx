@@ -5,6 +5,7 @@ import {
     ShareOutlined,
   } from "@mui/icons-material";
   import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import { BE_URL } from "App";
   import FlexBetween from "components/FlexBetween";
   import Friend from "components/Friend";
   import WidgetWrapper from "components/WidgetWrapper";
@@ -37,7 +38,7 @@ import {
     const patchLike = async () => {
       try {
 
-      const response = await fetch(`/posts/${postId}/like`, {
+      const response = await fetch(`${BE_URL}/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -69,7 +70,7 @@ import {
             height="auto"
             alt="post"
             style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-            src={`/assets/${picturePath}`}
+            src={`${BE_URL}/assets/${picturePath}`}
           />
         )}
         <FlexBetween mt="0.25rem">
