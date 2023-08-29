@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 import PostWidget from "./PostWidget";
+import { BE_URL } from "App";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   console.log('POSTS::', posts)
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:4041/posts", {
+    const response = await fetch(`${BE_URL}/posts`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -20,7 +21,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getUserPosts = async () => {
     const response = await fetch(
-      `http://localhost:4041/posts/${userId}/posts`,
+      `${BE_URL}/posts/${userId}/posts`,
       {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
