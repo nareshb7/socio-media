@@ -59,7 +59,10 @@ app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 5001
-mongoose.connect(process.env.MONGODB_URL).then(()=> {
+mongoose.connect(process.env.MONGODB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(()=> {
     app.listen(PORT, ()=> console.log(`Server is running on ${PORT}`))
     // UserModel.insertMany(users)
     // Post.insertMany(posts)
