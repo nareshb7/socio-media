@@ -48,7 +48,9 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage})
-
+app.get('/', (req,res) => {
+    res.status(200).json('Welcome to socio-media')
+})
 app.post('/auth/register', upload.single('picture'), register)
 app.post('/newpost', upload.single('picture'), verifyToken, createPost)
 
