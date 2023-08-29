@@ -16,6 +16,9 @@ import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 import { BE_URL } from "App";
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -52,6 +55,7 @@ const Form = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
@@ -64,7 +68,6 @@ const Form = () => {
         formData.append(value, values[value]);
       }
       formData.append("picturePath", values.picture.name);
-
       const savedUserResponse = await fetch(
         `${BE_URL}/auth/register`,
         {
@@ -74,12 +77,10 @@ const Form = () => {
       )
       const savedUser = await savedUserResponse.json();
       onSubmitProps.resetForm();
-
+      setIsLoading(false)
       if (savedUser) {
         setPageType("login");
       }
-    
-
   };
 
   const login = async (values, onSubmitProps) => {
@@ -89,8 +90,8 @@ const Form = () => {
       body: JSON.stringify(values),
     })
     const loggedIn = await loggedInResponse.json();
-    console.log('LOGIN_::', loggedIn)
     onSubmitProps.resetForm();
+    setIsLoading(false)
     if (loggedIn.message) {
       setErrorMessage(loggedIn.message)
     } else {
@@ -102,11 +103,10 @@ const Form = () => {
       );
       navigate("/home");
     }
-
-
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
+    setIsLoading(true)
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
@@ -255,6 +255,7 @@ const Form = () => {
               }}
             >
               {isLogin ? "LOGIN" : "REGISTER"}
+              {isLoading && <CircularProgress style={{width:'30px', height:'30px'}} />}
             </Button>
             <Typography sx={{color: '#f00'}}>{errorMessage}</Typography>
             <Typography
