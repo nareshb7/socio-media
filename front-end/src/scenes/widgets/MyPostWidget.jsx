@@ -48,7 +48,7 @@ import {
       console.log('FORMDAT', formData)
       
       const response = await fetch(
-        "http://localhost:4041/newpost",
+        "/newpost",
         {
           method: "POST",
           headers: { Authorization: `Bearer ${token}`,

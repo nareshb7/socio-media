@@ -37,7 +37,7 @@ import {
     const patchLike = async () => {
       try {
 
-      const response = await fetch(`http://localhost:4041/posts/${postId}/like`, {
+      const response = await fetch(`/posts/${postId}/like`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -69,7 +69,7 @@ import {
             height="auto"
             alt="post"
             style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-            src={`http://localhost:4041/assets/${picturePath}`}
+            src={`/assets/${picturePath}`}
           />
         )}
         <FlexBetween mt="0.25rem">
