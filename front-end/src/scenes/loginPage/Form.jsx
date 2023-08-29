@@ -255,7 +255,7 @@ const Form = () => {
               }}
             >
               {isLogin ? "LOGIN" : "REGISTER"}
-              {isLoading && <CircularProgress style={{width:'30px', height:'30px'}} />}
+              {isLoading && <CircularProgress style={{width:'30px', height:'30px', color:'#000'}} />}
             </Button>
             <Typography sx={{color: '#f00'}}>{errorMessage}</Typography>
             <Typography
@@ -278,6 +278,12 @@ const Form = () => {
                 : "Already have an account? Login here."}
             </Typography>
           </Box>
+          <Typography sx={{
+                m: "2rem 0",
+                p: "1rem",
+                textAlign:"center",
+                color: palette.primary.main,
+              }} > &#169; Developed by Naresh Baleboina</Typography>
         </form>
       )}
     </Formik>
